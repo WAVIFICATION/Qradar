@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Author:				Your Name <your.email@q1labs.com>
+Device Type:		Example SampleTron 5000 (FakeOS)
+Device Version:		Fakeware 2.7.1
+Protocol:			Syslog
+
+Custom Property regular expressions for Event Viewer:
+Sample-ID:			\sPolicy\sID\:\s(.*?)\;
+Sample-Group:		\sGroup\sName\:\s(.*?)\;
+
+Common Regular Expressions:
+IP Address:		\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+Port Number:	\d{1,5}
+MAC Address:	(?:[0-9a-fA-F]{2}\:){5}[0-9a-fA-F]{2}
+Protocol:		(tcp|udp|icmp|gre)
+Device Time:	\w{3}\s\d{2}\s\d{2}:\d{2}:\d{2}
+White Space:	\s
+Tab:			\t
+Match Anything:	.*?
+
+-->
+<device-extension xmlns="event_parsing/device_extension">
+	<!-- Do not remove the "allEventNames" value -->
+	<pattern id="allEventNames" xmlns=""><![CDATA[(.*)]]></pattern>
+	<!-- Everything below this line can be modified -->
+    
+    
+    
+<!--    NOTICE-MGMT-LOGIN-->
+	<pattern id="EventName-NOTICE-MGMT-LOGIN" xmlns=""><![CDATA[\s\NOTICE]]></pattern>
+	<pattern id="EventCategory-NOTICE-MGMT-LOGIN" xmlns=""><![CDATA[\slogin]]></pattern>
+	<pattern id="SourceIp-NOTICE-MGMT-LOGIN" xmlns=""><![CDATA[\s\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\s]]></pattern>
+	<pattern id="DeviceTime-NOTICE-MGMT-LOGIN" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+	<pattern id="Protocol-NOTICE-MGMT-LOGIN" case-insensitive="true" xmlns=""><![CDATA[\svia \w+\/\w+|\svia \w+]]></pattern>
+	<pattern id="UserName-NOTICE-MGMT-LOGIN" xmlns=""><![CDATA[\mgmt:\s\w+\s]]></pattern>
+
+    
+<!--  NOTICE-MGMT-TIMEOUT  -->
+    <pattern id="EventName-NOTICE-MGMT-TIMEOUT" xmlns=""><![CDATA[\s\NOTICE]]></pattern>
+	<pattern id="EventCategory-NOTICE-MGMT-TIMEOUT" xmlns=""><![CDATA[\stimeout]]></pattern>
+	<pattern id="SourceIp-NOTICE-MGMT-TIMEOUT" xmlns=""><![CDATA[\s\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\s]]></pattern>
+	<pattern id="DeviceTime-NOTICE-MGMT-TIMEOUT" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+	<pattern id="Protocol-NOTICE-MGMT-TIMEOUT" case-insensitive="true" xmlns=""><![CDATA[\svia \w+\/\w+|\svia \w+]]></pattern>
+	<pattern id="UserName-NOTICE-MGMT-TIMEOUT" xmlns=""><![CDATA[\mgmt:\s\w+\s]]></pattern>
+    
+<!--   NOTICE-SLB-REAL-SERVER -->
+    <pattern id="EventName-NOTICE-SLB-REAL-SERVER" xmlns=""><![CDATA[\s\NOTICE]]></pattern>
+	<pattern id="EventCategory-NOTICE-SLB-REAL-SERVER" xmlns=""><![CDATA[\sreal server \d+]]></pattern>
+	<pattern id="SourceIp-NOTICE-SLB-REAL-SERVER" xmlns=""><![CDATA[\s\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\s]]></pattern>
+	<pattern id="DeviceTime-NOTICE-SLB-REAL-SERVER" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+<!--  NOTICE-SLB-REAL-SERVICE  -->
+    <pattern id="EventName-NOTICE-SLB-REAL-SERVICE" xmlns=""><![CDATA[\s\NOTICE]]></pattern>
+	<pattern id="EventCategory-NOTICE-SLB-REAL-SERVICE" xmlns=""><![CDATA[\sreal service \d+]]></pattern>
+	<pattern id="SourceIp-NOTICE-SLB-REAL-SERVICE" xmlns=""><![CDATA[\s\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\s]]></pattern>
+	<pattern id="DeviceTime-NOTICE-SLB-REAL-SERVICE" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+<!--  NOTICE-SLB-NO-SERVICES  -->
+    <pattern id="EventName-NOTICE-SLB-NO-SERVICES" xmlns=""><![CDATA[\s\NOTICE]]></pattern>
+	<pattern id="EventCategory-NOTICE-SLB-NO-SERVICES" xmlns=""><![CDATA[\sNo services are available\d+]]></pattern>
+	<pattern id="SourceIp-NOTICE-SLB-NO-SERVICES" xmlns=""><![CDATA[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}]]></pattern>
+	<pattern id="DeviceTime-NOTICE-SLB-NO-SERVICES" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+<!--  NOTICE-SLB-SERVICES-AVAILIABLE  -->
+    <pattern id="EventName-NOTICE-SLB-SERVICES-AVAILIABLE" xmlns=""><![CDATA[\s\NOTICE]]></pattern>
+	<pattern id="EventCategory-NOTICE-SLB-SERVICES-AVAILIABLE" xmlns=""><![CDATA[\sServices are available \d+]]></pattern>
+	<pattern id="SourceIp-NOTICE-SLB-SERVICES-AVAILIABLE" xmlns=""><![CDATA[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}]]></pattern>
+	<pattern id="DeviceTime-NOTICE-SLB-SERVICES-AVAILIABLE" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+    
+    
+<!--  ALERT-CANNOT-CONTACT-SERVER  -->
+    <pattern id="EventName-ALERT-CANNOT-CONTACT-SERVER" xmlns=""><![CDATA[\s\ALERT]]></pattern>
+	<pattern id="EventCategory-ALERT-CANNOT-CONTACT-SERVER" xmlns=""><![CDATA[\scannot contact real server \d+]]></pattern>
+	<pattern id="SourceIp-ALERT-CANNOT-CONTACT-SERVER" xmlns=""><![CDATA[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}]]></pattern>
+	<pattern id="DeviceTime-ALERT-CANNOT-CONTACT-SERVER" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+<!--    ALERT-CANNOT-CONTACT-SERVICE-->
+    <pattern id="EventName-ALERT-CANNOT-CONTACT-SERVICE" xmlns=""><![CDATA[\s\ALERT]]></pattern>
+	<pattern id="EventCategory-ALERT-CANNOT-CONTACT-SERVICE" xmlns=""><![CDATA[\scannot contact real service \d+]]></pattern>
+	<pattern id="SourceIp-ALERT-CANNOT-CONTACT-SERVICE" xmlns=""><![CDATA[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}]]></pattern>
+	<pattern id="DeviceTime-ALERT-CANNOT-CONTACT-SERVICE" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+
+<!--    ALERT-VIRTUAL-FUNCTIONS-ACCESSIBLE-->
+    <pattern id="EventName-ALERT-VIRTUAL-FUNCTIONS-ACCESSIBLE" xmlns=""><![CDATA[\s\ALERT]]></pattern>
+	<pattern id="EventCategory-ALERT-VIRTUAL-FUNCTIONS-ACCESSIBLE" xmlns=""><![CDATA[\sSome virtual services have now become accessible]]></pattern>
+	<pattern id="DeviceTime-ALERT-VIRTUAL-FUNCTIONS-ACCESSIBLE" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+<!--    ALERT-VIRTUAL-SERVICES-DOWN-->
+    <pattern id="EventName-ALERT-VIRTUAL-SERVICES-DOWN" xmlns=""><![CDATA[\s\ALERT]]></pattern>
+	<pattern id="EventCategory-ALERT-VIRTUAL-SERVICES-DOWN" xmlns=""><![CDATA[\sThe virtual service [\s\S]+ down]]></pattern>
+	<pattern id="SourceIp-ALERT-VIRTUAL-SERVICES-DOWN" xmlns=""><![CDATA[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}]]></pattern>
+    <pattern id="SourcePort-ALERT-VIRTUAL-SERVICES-DOWN" xmlns=""><![CDATA[port \d+]]></pattern>
+	<pattern id="DeviceTime-ALERT-VIRTUAL-SERVICES-DOWN" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+<!--    ALERT-CANNOT-GET-CONTENT-->
+    <pattern id="EventName-ALERT-CANNOT-GET-CONTENT" xmlns=""><![CDATA[\s\ALERT]]></pattern>
+	<pattern id="EventCategory-ALERT-CANNOT-GET-CONTENT" xmlns=""><![CDATA[\scannot get content [\s\S]+ from real service \d+]]></pattern>
+	<pattern id="SourceIp-ALERT-CANNOT-GET-CONTENT" xmlns=""><![CDATA[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}]]></pattern>
+	<pattern id="DeviceTime-ALERT-CANNOT-GET-CONTENT" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+    
+<!--    ERROR-CERTIFICATE-EXPIRED-->
+    <pattern id="EventName-ERROR-CERTIFICATE-EXPIRED" xmlns=""><![CDATA[\sERROR]]></pattern>
+	<pattern id="EventCategory-ERROR-CERTIFICATE-EXPIRED" xmlns=""><![CDATA[\sCertificate [\s\S]+ has expired]]></pattern>
+	<pattern id="DeviceTime-ERROR-CERTIFICATE-EXPIRED" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+    		
+<!--    ERROR-SERVER-TIMEOUT-->
+    <pattern id="EventName-ERROR-SERVER-TIMEOUT" xmlns=""><![CDATA[\sERROR]]></pattern>
+	<pattern id="EventCategory-ERROR-SERVER-TIMEOUT" xmlns=""><![CDATA[\sVirtual Server [\s\S]+ timeout]]></pattern>
+	<pattern id="DeviceTime-ERROR-SERVER-TIMEOUT" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+<!--    ERROR-INTERFACE-OUTSIDE-LOCALNET-->
+     <pattern id="EventName-ERROR-INTERFACE-OUTSIDE-LOCALNET" xmlns=""><![CDATA[\sERROR]]></pattern>
+	<pattern id="EventCategory-ERROR-INTERFACE-OUTSIDE-LOCALNET" xmlns=""><![CDATA[\sIP interface \d+ is outside configured localnets]]></pattern>
+	<pattern id="DeviceTime-ERROR-INTERFACE-OUTSIDE-LOCALNET" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+    
+<!--    ERROR-APPLY-NOT-DONE-->
+    <pattern id="EventName-ERROR-APPLY-NOT-DONE" xmlns=""><![CDATA[\sERROR]]></pattern>
+	<pattern id="EventCategory-ERROR-APPLY-NOT-DONE" xmlns=""><![CDATA[\sError: Apply not done]]></pattern>
+	<pattern id="DeviceTime-ERROR-APPLY-NOT-DONE" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+
+<!--    ERROR-ENABLE-DISABLE-->
+    <pattern id="EventName-ERROR-ENABLE-DISABLE" xmlns=""><![CDATA[\sERROR]]></pattern>
+	<pattern id="EventCategory-ERROR-ENABLE-DISABLE" xmlns=""><![CDATA[\sVirtual router [\s\S]+ is enabled, but associated virtual server [\s\S]+ is disabled]]></pattern>
+	<pattern id="DeviceTime-ERROR-ENABLE-DISABLE" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+
+<!--    NOTICE-ROUTER-->
+    <pattern id="EventName-NOTICE-ROUTER" xmlns=""><![CDATA[\sNOTICE]]></pattern>
+	<pattern id="EventCategory-NOTICE-ROUTER" xmlns=""><![CDATA[\svirtual router   \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} is now [\s\S]+]]></pattern>
+	<pattern id="SourceIp-NOTICE-ROUTER" xmlns=""><![CDATA[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}]]></pattern>
+	<pattern id="DeviceTime-NOTICE-ROUTER" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+    
+<!--    INFO-->
+    <pattern id="EventName-INFO" xmlns=""><![CDATA[\sINFO]]></pattern>
+	<pattern id="EventCategory-INFO" xmlns=""><![CDATA[\sINFO    [\s\S]+:]]></pattern>
+	<pattern id="DeviceTime-INFO" xmlns=""><![CDATA[\w+\s\d+ \d\d\:\d\d\:\d\d]]></pattern>
+
+    
+    
+	<match-group order="1" description="Log Source Extension" xmlns="">
+		<matcher field="EventName" order="1" pattern-id="EventName-NOTICE-MGMT-LOGIN" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="2" pattern-id="EventName-NOTICE-MGMT-TIMEOUT" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="3" pattern-id="EventName-NOTICE-SLB-REAL-SERVER" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="4" pattern-id="EventName-NOTICE-SLB-REAL-SERVICE" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="5" pattern-id="EventName-NOTICE-SLB-NO-SERVICES" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="6" pattern-id="EventName-NOTICE-SLB-SERVICES-AVAILIABLE" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="7" pattern-id="EventName-ALERT-CANNOT-CONTACT-SERVER" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="8" pattern-id="EventName-ALERT-VIRTUAL-SERVICES-DOWN" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="9" pattern-id="EventName-ALERT-CANNOT-GET-CONTENT" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="10" pattern-id="EventName-ERROR-CERTIFICATE-EXPIRED" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="11" pattern-id="EventName-ERROR-SERVER-TIMEOUT" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="12" pattern-id="EventName-ERROR-INTERFACE-OUTSIDE-LOCALNET" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="13" pattern-id="EventName-ERROR-APPLY-NOT-DONE" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="14" pattern-id="EventName-ERROR-ENABLE-DISABLE" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="15" pattern-id="EventName-NOTICE-ROUTER" capture-group="1" enable-substitutions="false"/>
+        <matcher field="EventName" order="16" pattern-id="EventName-INFO" capture-group="1" enable-substitutions="false"/>
+
+
+        
+        
+        
+		<matcher field="EventCategory" order="1" pattern-id="EventCategory-NOTICE-MGMT-LOGIN" capture-group="1"/>
+        <matcher field="EventCategory" order="2" pattern-id="EventCategory-NOTICE-MGMT-TIMEOUT" capture-group="1"/>
+        <matcher field="EventCategory" order="3" pattern-id="EventCategory-NOTICE-SLB-REAL-SERVER" capture-group="1"/>
+        <matcher field="EventCategory" order="4" pattern-id="EventCategory-NOTICE-SLB-REAL-SERVICE" capture-group="1"/>
+        <matcher field="EventCategory" order="5" pattern-id="EventCategory-NOTICE-SLB-NO-SERVICES" capture-group="1"/>
+        <matcher field="EventCategory" order="6" pattern-id="EventCategory-NOTICE-SLB-SERVICES-AVAILIABLE" capture-group="1"/>
+        <matcher field="EventCategory" order="7" pattern-id="EventCategory-ALERT-CANNOT-CONTACT-SERVER" capture-group="1"/>
+        <matcher field="EventCategory" order="8" pattern-id="EventCategory-ALERT-VIRTUAL-SERVICES-DOWN" capture-group="1"/>
+        <matcher field="EventCategory" order="9" pattern-id="EventCategory-ALERT-CANNOT-GET-CONTENT" capture-group="1"/>
+        <matcher field="EventCategory" order="10" pattern-id="EventCategory-ERROR-CERTIFICATE-EXPIRED" capture-group="1"/>
+        <matcher field="EventCategory" order="11" pattern-id="EventCategory-ERROR-SERVER-TIMEOUT" capture-group="1"/>
+        <matcher field="EventCategory" order="12" pattern-id="EventCategory-ERROR-INTERFACE-OUTSIDE-LOCALNET" capture-group="1"/>
+        <matcher field="EventCategory" order="13" pattern-id="EventCategory-ERROR-APPLY-NOT-DONE" capture-group="1"/>
+        <matcher field="EventCategory" order="14" pattern-id="EventCategory-ERROR-ENABLE-DISABLE" capture-group="1"/>
+        <matcher field="EventCategory" order="15" pattern-id="EventCategory-NOTICE-ROUTER" capture-group="1"/>
+        <matcher field="EventCategory" order="16" pattern-id="EventCategory-INFO" capture-group="1"/>
+        
+        
+        
+		<matcher field="SourceIp" order="1" pattern-id="SourceIp-NOTICE-MGMT-LOGIN" capture-group="1" />
+        <matcher field="SourceIp" order="2" pattern-id="SourceIp-NOTICE-MGMT-TIMEOUT" capture-group="1" />
+        <matcher field="SourceIp" order="3" pattern-id="SourceIp-NOTICE-SLB-REAL-SERVER" capture-group="1" />
+        <matcher field="SourceIp" order="4" pattern-id="SourceIp-NOTICE-SLB-REAL-SERVICE" capture-group="1" />
+        <matcher field="SourceIp" order="5" pattern-id="SourceIp-NOTICE-SLB-NO-SERVICES" capture-group="1" />
+        <matcher field="SourceIp" order="6" pattern-id="SourceIp-NOTICE-SLB-SERVICES-AVAILIABLE" capture-group="1" />
+        <matcher field="SourceIp" order="7" pattern-id="SourceIp-ALERT-CANNOT-CONTACT-SERVER" capture-group="1" />
+        <matcher field="SourceIp" order="8" pattern-id="SourceIp-ALERT-VIRTUAL-SERVICES-DOWN" capture-group="1" />
+        <matcher field="SourceIp" order="9" pattern-id="SourceIp-ALERT-CANNOT-GET-CONTENT" capture-group="1" />
+        <matcher field="SourceIp" order="15" pattern-id="SourceIp-NOTICE-ROUTER" capture-group="1" />
+        
+        
+        
+        <matcher field="SourcePort" order="8" pattern-id="SourcePort-ALERT-VIRTUAL-SERVICES-DOWN" capture-group="1" />
+        
+        
+        
+		<matcher field="DeviceTime" order="1" pattern-id="DeviceTime-NOTICE-MGMT-LOGIN" capture-group="1" />
+        <matcher field="DeviceTime" order="2" pattern-id="DeviceTime-NOTICE-MGMT-TIMEOUT" capture-group="1" />
+        <matcher field="DeviceTime" order="3" pattern-id="DeviceTime-NOTICE-SLB-REAL-SERVER" capture-group="1" />
+        <matcher field="DeviceTime" order="4" pattern-id="DeviceTime-NOTICE-SLB-REAL-SERVICE" capture-group="1" />
+        <matcher field="DeviceTime" order="5" pattern-id="DeviceTime-NOTICE-SLB-NO-SERVICES" capture-group="1" />
+        <matcher field="DeviceTime" order="6" pattern-id="DeviceTime-NOTICE-SLB-SERVICES-AVAILIABLE" capture-group="1" />
+        <matcher field="DeviceTime" order="7" pattern-id="DeviceTime-ALERT-CANNOT-CONTACT-SERVER" capture-group="1" />
+        <matcher field="DeviceTime" order="8" pattern-id="DeviceTime-ALERT-VIRTUAL-SERVICES-DOWN" capture-group="1" />
+        <matcher field="DeviceTime" order="9" pattern-id="DeviceTime-ALERT-CANNOT-GET-CONTENT" capture-group="1" />
+        <matcher field="DeviceTime" order="10" pattern-id="DeviceTime-ERROR-CERTIFICATE-EXPIRED" capture-group="1" />
+        <matcher field="DeviceTime" order="11" pattern-id="DeviceTime-ERROR-SERVER-TIMEOUT" capture-group="1" />
+        <matcher field="DeviceTime" order="12" pattern-id="DeviceTime-ERROR-INTERFACE-OUTSIDE-LOCALNET" capture-group="1" />
+        <matcher field="DeviceTime" order="13" pattern-id="DeviceTime-ERROR-APPLY-NOT-DONE" capture-group="1" />
+        <matcher field="DeviceTime" order="14" pattern-id="DeviceTime-ERROR-ENABLE-DISABLE" capture-group="1" />
+        <matcher field="DeviceTime" order="15" pattern-id="DeviceTime-NOTICE-ROUTER" capture-group="1" />
+        <matcher field="DeviceTime" order="16" pattern-id="DeviceTime-INFO" capture-group="1" />
+        
+        
+        
+		<matcher field="Protocol" order="1" pattern-id="Protocol-NOTICE-MGMT-LOGIN" capture-group="1" />
+        <matcher field="Protocol" order="2" pattern-id="Protocol-NOTICE-MGMT-TIMEOUT" capture-group="1" />
+        
+        
+        
+		<matcher field="UserName" order="1" pattern-id="UserName-NOTICE-MGMT-LOGIN" capture-group="1" />
+        <matcher field="UserName" order="2" pattern-id="UserName-NOTICE-MGMT-TIMEOUT" capture-group="1" />
+        
+        
+        
+		<matcher field="HostName" order="1" pattern-id="HostName" capture-group="1" />
+        
+        
+        
+		<matcher field="GroupName" order="1" pattern-id="GroupName" capture-group="1" />
+        
+        
+        
+		<matcher field="NetBIOSName" order="1" pattern-id="NetBIOSName" capture-group="1" />
+        
+        
+        
+		<event-match-multiple pattern-id="allEventNames" capture-group-index="1" device-event-category="unknown" send-identity="OverrideAndNeverSend" />
+	</match-group>
+</device-extension>
